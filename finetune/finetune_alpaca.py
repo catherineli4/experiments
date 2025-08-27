@@ -2,29 +2,41 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import SFTTrainer, SFTConfig
 from datasets import load_dataset
 import torch
+import argparse
 
 # ==== Configuration ====
 
-MODEL_NAME = "allenai/OLMo-2-0425-1B"
-DATASET_PATH = "/home/catheri4/alpaca_split_perplexity/datasets/quartiles/q50_75.json"  # JSON or JSONL with "prompt" and "response"
-OUTPUT_DIR = "./olmo1b_alpaca_3perp_SFT"
-TEXT_FIELD = "prompt"
-RESPONSE_FIELD = "response"
+# Create the parser
+parser = argparse.ArgumentParser(description="Finetuning parameters")
 
+# Add arguments
+parser.add_argument("--model_name", help="The name of the model")
+parser.add_argument("--dataset_path", help="Path to finetuning dataset")
+parser.add_argument("--output_dir", help="Path to output model")
+parser.add_argument("--learning_rate",type = float, help="learning rate")
+
+args = parser.parse_args()
+
+# Set variable names
+DATASET_PATH = args.dataset_path
+MODEL_NAME = args.model_name
+OUTPUT_DIR = args.output_dir
+LEARNING_RATE = args.learning_rate
 
 # ==== Load Model and Tokenizer ====
 
 model = AutoModelForCausalLM.from_pretrained(
     MODEL_NAME, 
-    torch_dtype=torch.float32, 
+    torch_dtype=torch.float, 
     device_map="auto"
 )
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-tokenizer.pad_token = tokenizer.eos_token  # OLMo doesn't have a pad_token by default
+tokenizer.pad_token = tokenizer.eos_token  
 
-# Automatically infers format (JSON or JSONL)
+
 dataset = load_dataset("json", data_files=DATASET_PATH, split="train")
 
+#Formatting function for prompt completion data
 def formatting_func(example):
     if example["input"]:
         prompt = f"### Instruction:\n{example['instruction']}\n\n### Input:\n{example['input']}\n\n### Response:\n"
@@ -35,8 +47,6 @@ def formatting_func(example):
         "completion": example["output"]
     }
 
-
-
 # Add this after loading your dataset to inspect the data:
 print("Dataset sample:", dataset[0])
 print("Formatted sample:", formatting_func(dataset[0]))
@@ -45,29 +55,21 @@ print("Formatted sample:", formatting_func(dataset[0]))
 sample = dataset[0]
 print("Available keys:", sample.keys())
 
-# Test tokenization
-sample_text = formatting_func(dataset[0])
-# tokens = tokenizer(sample_text, return_tensors="pt", truncation=True, max_length=512)
-# print("Tokenized length:", tokens['input_ids'].shape)
-# print("Sample tokens:", tokens['input_ids'][0][:20])  # First 20 tokens
-
 training_args = SFTConfig(
     output_dir=OUTPUT_DIR,
     num_train_epochs=3,
-    per_device_train_batch_size=2,  # Smaller batch size for stability
-    
-    # KEY FIX 2: Much lower learning rate to prevent gradient explosion
-    learning_rate=1e-5,  # Reduced from 1e-4 to 1e-5
+    per_device_train_batch_size=2,  
+
+    learning_rate=LEARNING_RATE,  
     
     logging_steps=10,
     save_strategy="epoch",
     
-    # KEY FIX 3: Longer sequences with packing
     max_seq_length=1024,
     packing=True,  # Enable packing to combine short sequences
     
     # KEY FIX 4: Gradient clipping to prevent explosion
-    max_grad_norm=1.0,  # Clip gradients to prevent NaN
+    max_grad_norm=1.0, 
     
     # KEY FIX 5: More conservative training settings
     warmup_steps=100,  # More warmup steps for stability
@@ -86,7 +88,7 @@ training_args = SFTConfig(
     logging_first_step=True,
     load_best_model_at_end=False,
 
-    completion_only_loss=True,
+    completion_only_loss=False,
 )
 
 # ==== Train ====
