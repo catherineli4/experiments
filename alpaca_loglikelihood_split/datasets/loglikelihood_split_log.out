@@ -1,0 +1,46 @@
+Loading dataset from: datasets/alpaca_data_cleaned.json
+Loaded 51760 samples
+Loading OLMo model with lm-eval-harness HFLM: allenai/OLMo-2-0425-1B
+Computing log likelihood scores with lm-eval-harness HFLM (this is fast and robust)...
+
+==================================================
+QUARTILE STATISTICS
+==================================================
+
+TOP_25:
+  Number of samples: 12940
+  Mean log likelihood: -96.28
+  Std log likelihood: 18.93
+  Min log likelihood: -128.09
+  Max log likelihood: -42.11
+
+Q25_50:
+  Number of samples: 12940
+  Mean log likelihood: -173.59
+  Std log likelihood: 29.46
+  Min log likelihood: -229.50
+  Max log likelihood: -128.09
+
+Q50_75:
+  Number of samples: 12940
+  Mean log likelihood: -302.11
+  Std log likelihood: 45.09
+  Min log likelihood: -385.93
+  Max log likelihood: -229.50
+
+BOTTOM_25:
+  Number of samples: 12940
+  Mean log likelihood: -516.44
+  Std log likelihood: 110.19
+  Min log likelihood: -2044.72
+  Max log likelihood: -385.94
+Saved 12940 samples to datasets/alpaca_quartiles/top_25.json
+  Log likelihood range: -42.11 to -128.09
+Saved 12940 samples to datasets/alpaca_quartiles/q25_50.json
+  Log likelihood range: -128.09 to -229.50
+Saved 12940 samples to datasets/alpaca_quartiles/q50_75.json
+  Log likelihood range: -229.50 to -385.93
+Saved 12940 samples to datasets/alpaca_quartiles/bottom_25.json
+  Log likelihood range: -385.94 to -2044.72
+
+Processing complete! Quartiles saved to datasets/alpaca_quartiles/
