@@ -1,4 +1,4 @@
 # experiments
-utils - contains finetune and evaluation scripts
+utils - contains finetune script
 
 scripts - contains scripts to batch run evals + finetune
