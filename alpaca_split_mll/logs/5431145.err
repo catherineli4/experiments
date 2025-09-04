@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/catheri4/experiments/alpaca_partition/alpaca_split_mll/test_ll.py", line 199, in <module>
+    main() 
+  File "/home/catheri4/experiments/alpaca_partition/alpaca_split_mll/test_ll.py", line 170, in main
+    dataset = load_alpaca_dataset(args.dataset_path)
+  File "/home/catheri4/experiments/alpaca_partition/alpaca_split_mll/test_ll.py", line 34, in load_alpaca_dataset
+    with open(file_path, 'r', encoding='utf-8') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/catheri4/experiments/alpaca_partition/alpaca_split_perplexity/datasets/alpaca_data_cleaned.json'

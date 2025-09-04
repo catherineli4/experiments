@@ -1,0 +1,46 @@
+Loading dataset from: datasets/alpaca_data_cleaned.json
+Loaded 51760 samples
+Loading OLMo model with lm-eval-harness HFLM: allenai/OLMo-2-0425-1B
+Computing perplexity scores with lm-eval-harness HFLM (this is fast and robust)...
+
+==================================================
+QUARTILE STATISTICS
+==================================================
+
+TOP_25:
+  Number of samples: 12940
+  Mean perplexity: 3.69
+  Std perplexity: 0.63
+  Min perplexity: 1.14
+  Max perplexity: 4.58
+
+Q25_50:
+  Number of samples: 12940
+  Mean perplexity: 5.51
+  Std perplexity: 0.58
+  Min perplexity: 4.58
+  Max perplexity: 6.66
+
+Q50_75:
+  Number of samples: 12940
+  Mean perplexity: 8.99
+  Std perplexity: 1.67
+  Min perplexity: 6.66
+  Max perplexity: 12.52
+
+BOTTOM_25:
+  Number of samples: 12940
+  Mean perplexity: 26.95
+  Std perplexity: 24.18
+  Min perplexity: 12.52
+  Max perplexity: 1136.36
+Saved 12940 samples to datasets/alpaca_quartiles/top_25.json
+  Perplexity range: 1.14 to 4.58
+Saved 12940 samples to datasets/alpaca_quartiles/q25_50.json
+  Perplexity range: 4.58 to 6.66
+Saved 12940 samples to datasets/alpaca_quartiles/q50_75.json
+  Perplexity range: 6.66 to 12.52
+Saved 12940 samples to datasets/alpaca_quartiles/bottom_25.json
+  Perplexity range: 12.52 to 1136.36
+
+Processing complete! Quartiles saved to datasets/alpaca_quartiles/

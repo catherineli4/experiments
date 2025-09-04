@@ -1,0 +1,10 @@
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:12<00:12, 12.11s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:14<00:00,  6.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:14<00:00,  7.19s/it]
+Running loglikelihood requests:   0%|          | 0/20 [00:00<?, ?it/s]Running loglikelihood requests:   5%|▌         | 1/20 [00:00<00:15,  1.23it/s]Running loglikelihood requests:  45%|████▌     | 9/20 [00:01<00:01, 10.68it/s]Running loglikelihood requests: 100%|██████████| 20/20 [00:01<00:00, 18.26it/s]
+Traceback (most recent call last):
+  File "/home/catheri4/alpaca_split_perplexity/alpaca_loglikelihood_split.py", line 251, in <module>
+    main() 
+  File "/home/catheri4/alpaca_split_perplexity/alpaca_loglikelihood_split.py", line 236, in main
+    perplexities = compute_perplexities_lm_eval(model, dataset)
+  File "/home/catheri4/alpaca_split_perplexity/alpaca_loglikelihood_split.py", line 91, in compute_perplexities_lm_eval
+    avg_log_likelihood = log_likelihood / num_tokens
+ZeroDivisionError: float division by zero

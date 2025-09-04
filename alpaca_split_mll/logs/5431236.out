@@ -1,0 +1,5 @@
+Loading dataset from: /data/user_data/catheri4/datasets/alpaca/alpaca_data_cleaned.json
+Loaded 51760 samples
+Limited to 10 samples for testing
+Loading OLMo model with lm-eval-harness HFLM: allenai/OLMo-2-0425-1B
+Computing mean LL (mll) scores with lm_metrics...
