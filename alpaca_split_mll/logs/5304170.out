@@ -1,4 +1,0 @@
-Loading dataset from: datasets/alpaca_data_cleaned.json
-Loaded 51760 samples
-Loading OLMo model with lm-eval-harness HFLM: allenai/OLMo-2-0425-1B
-Computing perplexity scores with lm-eval-harness HFLM...

@@ -1,10 +1,0 @@
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.06s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.59s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.81s/it]
-Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. Default to no truncation.
-Traceback (most recent call last):
-  File "/home/catheri4/experiments/alpaca_partition/alpaca_split_mll/test_ll.py", line 219, in <module>
-    main() 
-  File "/home/catheri4/experiments/alpaca_partition/alpaca_split_mll/test_ll.py", line 206, in main
-    print_statistics(token_lengths, "TOKEN LENGTHS FOR ORIGINAL SAMPLE")
-  File "/home/catheri4/experiments/alpaca_partition/alpaca_split_mll/test_ll.py", line 138, in print_statistics
-    for i, sample_ll in scores:
-TypeError: cannot unpack non-iterable int object
